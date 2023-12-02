@@ -164,12 +164,12 @@ class IoTCClient():
         for prop in patch:
             if prop == '$version':
                 continue
-            ret = prop_cb(prop, patch[prop]['value'])
+            ret = prop_cb(prop, patch[prop])
             if ret:
                 self._logger.debug('Acknowledging {}'.format(prop))
                 self.send_property({
                     '{}'.format(prop): {
-                        "value": patch[prop]["value"],
+                        "value": patch[prop],
                         'status': 'completed',
                         'desiredVersion': patch['$version'],
                         'message': 'Property received'}
